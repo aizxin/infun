@@ -7,11 +7,9 @@
         }
     ],
     "require": {
-        "topthink/think-orm": "^1.2",
         "topthink/think-validate": "^1.0",
         "topthink/think-template": "^1.0",
-        "topthink/think-log": "^1.0",
-        "topthink/think-cache": "^1.0"
+        "topthink/think-log": "^1.0"
     },
     "repositories": {
         "packagist": {

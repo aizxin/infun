@@ -10,7 +10,10 @@
 
     public function __construct()
     {
-        $this->log = \Yaf\Registry::get('config')['log']['path'];
+        $this->log_path = \Yaf\Registry::get('config')['log']['path']. date( "Ym" ) . "/" . date( 'd' ) . ".log";
+
+        $path = dirname($this->log_path);
+        !is_dir($path) && mkdir($path, 0755, true);
     }
     /**
      * 打印日志
@@ -18,8 +21,7 @@
      */
     public function info($logs = "")
     {
-        // return $this->log . date( "Ym" ) . "/" . date( 'd' ) . ".log";
-		swoole_async_writefile( $this->log . date( "Ym" ) . "/" . date( 'd' ) . ".log", $logs . PHP_EOL, function ( $filename ) {}, FILE_APPEND );
+		swoole_async_writefile( $this->log_path , $logs . PHP_EOL, function ( $filename ) {}, FILE_APPEND );
     }
     /**
      * 打印日志
@@ -31,6 +33,6 @@
 		foreach ( $datas as $key => $value ) {
 			$logs .= $key . ":" . $value . " | ";
 		}
-		swoole_async_writefile( $this->log. date( "Ym" ) . "/" . date( 'd' ) . ".log", $logs . PHP_EOL, function ( $filename ) {}, FILE_APPEND );
+		swoole_async_writefile( $this->log_path, $logs . PHP_EOL, function ( $filename ) {}, FILE_APPEND );
     }
  }
