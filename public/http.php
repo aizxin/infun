@@ -5,9 +5,7 @@
  * Date: 18/3/27
  * Time: 上午12:50
  */
-class Ws {
-
-    public $ws = null;
+class HttpSever {
     public static $instance;
     private $env = 'product'; //product OR develop
     private $application;
@@ -16,42 +14,17 @@ class Ws {
         define('APP_PATH', dirname(__DIR__));
         
         $config = (new \Yaf\Config\Ini(APP_PATH . "/conf/application.ini",$this->env))->toArray();
-        $this->ws = new \swoole_websocket_server($config['sw']['host'],$config['sw']['port']);
-        // $this->ws->listen($config['sw']['host'], $config['sw']['chart_port'], SWOOLE_SOCK_TCP);
-        $this->ws->set($config['swoole']);
-        $this->ws->on("start", [$this, 'onStart']);
-        $this->ws->on("open", [$this, 'onOpen']);
-        $this->ws->on("message", [$this, 'onMessage']);
-        $this->ws->on("workerstart", [$this, 'onWorkerStart']);
-        $this->ws->on("request", [$this, 'onRequest']);
-        $this->ws->on("task", [$this, 'onTask']);
-        $this->ws->on("finish", [$this, 'onFinish']);
-        $this->ws->on("close", [$this, 'onClose']);
-        // $server = $this->ws->addListener($config['sw']['host'], $config['sw']['client_port'], SWOOLE_SOCK_TCP);
-        // $server->set([
-        //     'work_num' => 2,
-        //     'task_worker_num' => 2,
-        // ]);
-        // $server->on("receive", function ($serv, $fd, $threadId, $data){
-        //     var_dump($fd);
-        //     var_dump($data);
-        //     var_dump($this->ws->ports[1]);
-        //     $this->ws->ports[1]->task(['fd'=>$fd,'data'=>$data]);
-        //     // $serv->send($fd, "Swoole: {$data}");
-        // });
-        //处理异步任务
-        // $server->on('task', function ($serv, $task_id, $from_id, $data) {
-        //     echo "AsyncTask[$task_id] Finish: $from_id".PHP_EOL;
-        //     // $serv->send($data, "Swoole: 你好");
-        //     var_dump($data);
-        //     return $data;
-        // });
-        // //处理异步任务的结果
-        // $server->on('finish', function ($serv, $task_id, $data) {
-        //     //echo "AsyncTask[$task_id] Finish: $data".PHP_EOL;
-        //     print_r(['data' => $data]);
-        // });
-        $this->ws->start();
+        $ws = new \swoole_websocket_server($config['sw']['host'],$config['sw']['port']);
+        $ws->set($config['swoole']);
+        $ws->on("start", [$this, 'onStart']);
+        $ws->on("open", [$this, 'onOpen']);
+        $ws->on("message", [$this, 'onMessage']);
+        $ws->on("workerstart", [$this, 'onWorkerStart']);
+        $ws->on("request", [$this, 'onRequest']);
+        $ws->on("task", [$this, 'onTask']);
+        $ws->on("finish", [$this, 'onFinish']);
+        $ws->on("close", [$this, 'onClose']);
+        $ws->start();
     }
 
     /**
@@ -194,4 +167,4 @@ class Ws {
         return self::$instance;
     }
 }
-Ws::getInstance();
+HttpSever::getInstance();

@@ -5,23 +5,23 @@
  * @see http://www.php.net/manual/en/class.yaf-plugin-abstract.php
  * @author afoii-12\administrator
  */
-class SamplePlugin extends Yaf\Plugin_Abstract {
+class SamplePlugin extends \Yaf\Plugin_Abstract {
 
-	public function routerStartup(Yaf\Request_Abstract $request, Yaf\Response_Abstract $response) {
+	public function routerStartup(\Yaf\Request_Abstract $request, \Yaf\Response_Abstract $response) {
 	}
 
-	public function routerShutdown(Yaf\Request_Abstract $request, Yaf\Response_Abstract $response) {
+	public function routerShutdown(\Yaf\Request_Abstract $request, \Yaf\Response_Abstract $response) {
 	}
 
-	public function dispatchLoopStartup(Yaf\Request_Abstract $request, Yaf\Response_Abstract $response) {
+	public function dispatchLoopStartup(\Yaf\Request_Abstract $request, \Yaf\Response_Abstract $response) {
 	}
 
-	public function preDispatch(Yaf\Request_Abstract $request, Yaf\Response_Abstract $response) {
+	public function preDispatch(\Yaf\Request_Abstract $request, \Yaf\Response_Abstract $response) {
 	}
 
-	public function postDispatch(Yaf\Request_Abstract $request, Yaf\Response_Abstract $response) {
+	public function postDispatch(\Yaf\Request_Abstract $request, \Yaf\Response_Abstract $response) {
 	}
 
-	public function dispatchLoopShutdown(Yaf\Request_Abstract $request, Yaf\Response_Abstract $response) {
+	public function dispatchLoopShutdown(\Yaf\Request_Abstract $request, \Yaf\Response_Abstract $response) {
 	}
 }

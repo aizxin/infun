@@ -30,14 +30,28 @@ class IndexController extends Yaf\Controller_Abstract {
 		//4. render by Yaf, 如果这里返回FALSE, Yaf将不会调用自动视图引擎Render模板
 		// return false;
 		// return 'Hello World' . PHP_EOL;
-		$client = new \swoole_client(SWOOLE_SOCK_TCP);
-		if (!$client->connect('127.0.0.1', 9503,-1))
-		{
-			exit("connect failed. Error: {$client->errCode}\n");
-		}
-		$client->send("select * from users");
-		var_dump($client->recv());
-		$client->close();
+		// $client = new \swoole_client(SWOOLE_SOCK_TCP);
+		// if (!$client->connect('127.0.0.1', 9503,-1))
+		// {
+		// 	exit("connect failed. Error: {$client->errCode}\n");
+		// }
+		// $client->send("select * from users");
+		// var_dump($client->recv());
+		// $client->close();
+		$mysql = \Yaf\Registry::get('db')->pop();
+        //var_dump($mysql);
+        $get = $mysql->query("select * from `admin` where id=1 limit 1 ");
+        echo json_encode($get);
+		\Yaf\Registry::get('db')->push($mysql);
+		$redis = \Yaf\Registry::get('redis')->pop();
+        //var_dump($mysql);
+        $get = $redis->set('ansjn','ndjand');
+		echo json_encode($get);
+		$get = $redis->get('ansjn');
+		var_dump($get);
+		\Yaf\Registry::get('redis')->push($redis);
+		var_dump(\Yaf\Registry::get('config')['swoole']['worker_num']);
+		echo \Yaf\Registry::get('log')->info('ansaadand').PHP_EOL;
 		$this->getView()->assign("content", "Hello World");
 	}
 }

@@ -10,25 +10,25 @@
 
 use think\Db;
 
-class Bootstrap extends Yaf\Bootstrap_Abstract {
+class Bootstrap extends \Yaf\Bootstrap_Abstract {
 
     public function _initConfig() {
 		//把配置保存起来
-		$arrConfig = Yaf\Application::app()->getConfig();
-		Yaf\Registry::set('config', $arrConfig);
+		$arrConfig = \Yaf\Application::app()->getConfig();
+		\Yaf\Registry::set('config', $arrConfig);
 	}
 
-	public function _initPlugin(Yaf\Dispatcher $dispatcher) {
+	public function _initPlugin(\Yaf\Dispatcher $dispatcher) {
 		//注册一个插件
 		$objSamplePlugin = new SamplePlugin();
 		$dispatcher->registerPlugin($objSamplePlugin);
 	}
 
-	public function _initRoute(Yaf\Dispatcher $dispatcher) {
+	public function _initRoute(\Yaf\Dispatcher $dispatcher) {
 		//在这里注册自己的路由协议,默认使用简单路由
 	}
 	
-	public function _initView(Yaf\Dispatcher $dispatcher) {
+	public function _initView(\Yaf\Dispatcher $dispatcher) {
 		//在这里注册自己的view控制器，例如smarty,firekylin
 	}
 	/**
@@ -36,33 +36,38 @@ class Bootstrap extends Yaf\Bootstrap_Abstract {
 	 * @param  Yaf\Dispatcher $dispatcher [description]
 	 * @return [type]                     [description]
 	 */
-	public function _initAutoload(Yaf\Dispatcher $dispatcher)
+	public function _initAutoload(\Yaf\Dispatcher $dispatcher)
 	{
-		// Yaf\Loader::import( APP_PATH . '/vendor/autoload.php' );
+		\Yaf\Loader::import( APP_PATH . '/vendor/autoload.php');
 	}
 	/**
-	 * [_initThinkOrm top-think的 Orm]
+	 * [_initDb 基于协程channel与协程mysql的数据库连接池]
 	 * @param  Yaf\Dispatcher $dispatcher [description]
 	 * @return [type]                     [description]
 	 */
-	public function _initThinkOrm(Yaf\Dispatcher $dispatcher)
+	public function _initDb(\Yaf\Dispatcher $dispatcher)
 	{
-		// $config = Yaf\Application::app()->getConfig();
-		// Db::setConfig([
-		// 	// 数据库类型
-		//     'type'            => "Mysql",
-		//     // 服务器地址
-		//     'hostname'        => $config->db->host,
-		//     // 数据库名
-		//     'database'        => $config->db->database,
-		//     // 用户名
-		//     'username'        => $config->db->username,
-		//     // 密码
-		//     'password'        => $config->db->password,
-		//     // 端口
-		//     'hostport'        => '3306',
-		//     // 表前缀
-		//     'prefix'          => 'ccwb_',
-		// ]);
+		$mysqlDB = new CoMysqlPool();
+        \Yaf\Registry::set('db', $mysqlDB);
+	}
+	/**
+	 * [_initRedis 基于协程channel与协程redis的数据库连接池]
+	 * @param  Yaf\Dispatcher $dispatcher [description]
+	 * @return [type]                     [description]
+	 */
+	public function _initRedis(\Yaf\Dispatcher $dispatcher)
+	{
+		$redis = new CoRedisPool();
+        \Yaf\Registry::set('redis', $redis);
+	}
+	/**
+	 * [_initLog swoole的异步日志]
+	 * @param  Yaf\Dispatcher $dispatcher [description]
+	 * @return [type]                     [description]
+	 */
+	public function _initLog(\Yaf\Dispatcher $dispatcher)
+	{
+		$log = new CoFileLog();
+        \Yaf\Registry::set('log', $log);
 	}
 }
