@@ -10,7 +10,7 @@ class HttpSever {
     private $env = 'product'; //product OR develop
     private $application;
     public function __construct() {
-        define ('IS_SWOOLE', TRUE);
+        define ('IS_SWOOLE', true);
         define('APP_PATH', dirname(__DIR__));
         
         $config = (new \Yaf\Config\Ini(APP_PATH . "/conf/application.ini",$this->env))->toArray();

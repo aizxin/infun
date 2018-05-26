@@ -1,1 +1,59 @@
 [2018-05-25 21:20:23 *1067.0]	WARNING	swSignal_callback: signal[13] callback is null.
+[2018-05-26 17:45:49 *1142.0]	ERROR	zm_deactivate_swoole (ERROR 503): Fatal error: Class 'Conroller' not found in /Users/cw_editor/Desktop/web/work/yaf/blog/application/controllers/Index.php on line 7.
+[2018-05-26 17:45:49 $1125.0]	WARNING	swManager_check_exit_status: worker#0 abnormal exit, status=255, signal=0
+[2018-05-26 17:45:54 *1160.0]	ERROR	zm_deactivate_swoole (ERROR 503): Fatal error: Class 'Conroller' not found in /Users/cw_editor/Desktop/web/work/yaf/blog/application/controllers/Index.php on line 7.
+[2018-05-26 17:45:54 $1125.0]	WARNING	swManager_check_exit_status: worker#0 abnormal exit, status=255, signal=0
+[2018-05-26 17:49:29 *1272.0]	ERROR	zm_deactivate_swoole (ERROR 503): Fatal error: Uncaught Error: Call to a member function end() on null in /Users/cw_editor/Desktop/web/work/yaf/blog/application/controllers/Index.php:15
+Stack trace:
+#0 [internal function]: IndexController->indexAction()
+#1 /Users/cw_editor/Desktop/web/work/yaf/blog/public/http.php(82): Yaf\Dispatcher->dispatch(Object(Yaf\Request\Http))
+#2 (0): HttpSever->onRequest(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#3 (0): close_coro()
+#4 {main}
+  thrown in /Users/c
+[2018-05-26 17:49:29 $1255.0]	WARNING	swManager_check_exit_status: worker#0 abnormal exit, status=255, signal=0
+[2018-05-26 17:56:42 *1501.0]	ERROR	zm_deactivate_swoole (ERROR 503): Fatal error: Uncaught Error: Call to a member function header() on null in /Users/cw_editor/Desktop/web/work/yaf/blog/application/controllers/Index.php:17
+Stack trace:
+#0 [internal function]: IndexController->indexAction()
+#1 /Users/cw_editor/Desktop/web/work/yaf/blog/public/http.php(82): Yaf\Dispatcher->dispatch(Object(Yaf\Request\Http))
+#2 (0): HttpSever->onRequest(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#3 (0): close_coro()
+#4 {main}
+  thrown in /User
+[2018-05-26 17:56:42 $1484.0]	WARNING	swManager_check_exit_status: worker#0 abnormal exit, status=255, signal=0
+[2018-05-26 18:00:12 *1633.0]	ERROR	zm_deactivate_swoole (ERROR 503): Fatal error: Uncaught Error: Call to undefined function opcache_get_status() in /Users/cw_editor/Desktop/web/work/yaf/blog/application/controllers/Index.php:20
+Stack trace:
+#0 [internal function]: IndexController->indexAction()
+#1 /Users/cw_editor/Desktop/web/work/yaf/blog/public/http.php(82): Yaf\Dispatcher->dispatch(Object(Yaf\Request\Http))
+#2 (0): HttpSever->onRequest(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#3 (0): close_coro()
+#4 {main}
+  thrown in 
+[2018-05-26 18:00:12 $1616.0]	WARNING	swManager_check_exit_status: worker#0 abnormal exit, status=255, signal=0
+[2018-05-26 18:01:31 *1706.0]	ERROR	zm_deactivate_swoole (ERROR 503): Fatal error: Uncaught Error: Call to undefined function opcache_get_status() in /Users/cw_editor/Desktop/web/work/yaf/blog/application/controllers/Index.php:21
+Stack trace:
+#0 [internal function]: IndexController->indexAction()
+#1 /Users/cw_editor/Desktop/web/work/yaf/blog/public/http.php(82): Yaf\Dispatcher->dispatch(Object(Yaf\Request\Http))
+#2 (0): HttpSever->onRequest(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#3 (0): close_coro()
+#4 {main}
+  thrown in 
+[2018-05-26 18:01:31 $1689.0]	WARNING	swManager_check_exit_status: worker#0 abnormal exit, status=255, signal=0
+[2018-05-26 18:01:34 *1722.0]	ERROR	zm_deactivate_swoole (ERROR 503): Fatal error: Uncaught Error: Call to undefined function opcache_get_status() in /Users/cw_editor/Desktop/web/work/yaf/blog/application/controllers/Index.php:21
+Stack trace:
+#0 [internal function]: IndexController->indexAction()
+#1 /Users/cw_editor/Desktop/web/work/yaf/blog/public/http.php(82): Yaf\Dispatcher->dispatch(Object(Yaf\Request\Http))
+#2 (0): HttpSever->onRequest(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#3 (0): close_coro()
+#4 {main}
+  thrown in 
+[2018-05-26 18:01:34 $1689.0]	WARNING	swManager_check_exit_status: worker#0 abnormal exit, status=255, signal=0
+[2018-05-26 18:02:16 *1750.0]	ERROR	zm_deactivate_swoole (ERROR 503): Fatal error: Uncaught Error: Call to undefined function opcache_get_status() in /Users/cw_editor/Desktop/web/work/yaf/blog/application/controllers/Index.php:20
+Stack trace:
+#0 [internal function]: IndexController->indexAction()
+#1 /Users/cw_editor/Desktop/web/work/yaf/blog/public/http.php(82): Yaf\Dispatcher->dispatch(Object(Yaf\Request\Http))
+#2 (0): HttpSever->onRequest(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#3 (0): close_coro()
+#4 {main}
+  thrown in 
+[2018-05-26 18:02:16 $1733.0]	WARNING	swManager_check_exit_status: worker#0 abnormal exit, status=255, signal=0

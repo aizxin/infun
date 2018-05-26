@@ -1,6 +1,8 @@
 <?php
-/**
- * redis连接池
+/** 
+ * @Author: whero 
+ * @Date: 2018-05-26 17:40:50 
+ * @Desc: redis连接池 
  */
 class CoRedisPool
 {

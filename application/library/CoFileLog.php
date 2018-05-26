@@ -1,7 +1,9 @@
 <?php
 
-/**
- * 文件日志
+/** 
+ * @Author: whero 
+ * @Date: 2018-05-26 17:40:27 
+ * @Desc: 文件日志 
  */
 
  class CoFileLog{

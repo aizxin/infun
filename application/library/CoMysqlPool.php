@@ -1,6 +1,8 @@
 <?php
-/**
- * mysql连接池
+/** 
+ * @Author: whero 
+ * @Date: 2018-05-26 17:40:39 
+ * @Desc: mysql连接池 
  */
 class CoMysqlPool
 {
