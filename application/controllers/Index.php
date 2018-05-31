@@ -18,7 +18,7 @@ class IndexController extends Controller {
 		// $response->header('Content-Type', 'text/html;charset=utf-8');
         $response->status(404);
 		// var_dump(opcache_get_status());
-		$response->write(json_encode(['code'=>2,'data'=>1111]));
+		$response->write(json_encode(\Yaf\Registry::get('request')));
         // var_dump(opcache_get_status()['opcache_statistics']);
         // return false;
 		$this->getView()->assign("content", "Hello World");

@@ -78,12 +78,16 @@ class HttpSever {
 
         ob_start();
         try {
-            $yaf_request = new \Yaf\Request\Http($request->server['request_uri']);
-            $this->application->getDispatcher()->dispatch($yaf_request);
-            $result = ob_get_contents();
-        } catch (\Exception $e ) {
-            $result = $e->getMessage();
+            $yaf_request = new \Yaf\Request\Http($request->server['request_uri'],'/');
+            $this->application->getDispatcher()->throwException(true)->dispatch($yaf_request);
+        } catch (\Yaf\Exception $e ) {
+            // Yaf\View\Simple::render("error.phtml");
+            // var_dump($e);
+            // $result = $e->getMessage();
+            $response->status(302);
+            $response->header("Location", "http://127.0.0.1:9501/index/error/error");
         }
+        $result = ob_get_contents();
         ob_end_clean();
         // add Header
         $response->header('Content-Type', 'application/json; charset=utf-8');
