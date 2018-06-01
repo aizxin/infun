@@ -62,4 +62,26 @@
     {
         return \Yaf\Registry::get('response');
     }
+    /** 
+     * @Author: whero 
+     * @Date: 2018-06-01 23:02:07 
+     * @Desc: 获取html 
+     */            
+    public function getHtml()
+    {
+        return \Yaf\Registry::get('html');
+    }
+    /** 
+     * @Author: whero 
+     * @Date: 2018-06-01 23:03:51 
+     * @Desc: 渲染视图
+     */    
+    public function getRender($file)
+    {
+        ob_start();
+		$this->getHtml()->fetch($file);
+		$content = ob_get_clean();
+		$this->response()->write($content);
+    }
+
  }

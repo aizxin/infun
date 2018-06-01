@@ -26,15 +26,11 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract {
 	
 	public function _initView(\Yaf\Dispatcher $dispatcher) {
 		//在这里注册自己的view控制器，例如smarty,firekylin
-	}
-	/** 
-	 * @Author: whero 
-	 * @Date: 2018-05-26 17:39:33 
-	 * @Desc: 加载composer包 
-	 */	
-	public function _initAutoload(\Yaf\Dispatcher $dispatcher)
-	{
-		\Yaf\Loader::import( APP_PATH . '/vendor/autoload.php');
+		\Yaf\Registry::set('html', new \think\Template([
+            'view_path'	=>	APP_PATH .'/application/views/',
+            'cache_path'	=>	APP_PATH .'/runtime/temp/',
+            'view_suffix'   =>	'html',
+        ]));
 	}
 	/** 
 	 * @Author: whero 
@@ -63,7 +59,13 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract {
 	 */	
 	public function _initLog(\Yaf\Dispatcher $dispatcher)
 	{
-		$log = new CoFileLog();
-        \Yaf\Registry::set('log', $log);
+		// $log = new CoFileLog();
+		// \Yaf\Registry::set('log', $log);
+		$log = new \think\Log();
+		$log->init([
+			'type'=>'file',
+			'path'=> APP_PATH .'/runtime/log/',
+		]);
+		\Yaf\Registry::set('log', $log);
 	}
 }

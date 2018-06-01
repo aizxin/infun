@@ -5,12 +5,12 @@
  * @see http://www.php.net/manual/en/yaf-dispatcher.catchexception.php
  * @author afoii-12\administrator
  */
-class ErrorController extends Yaf\Controller_Abstract {
+class ErrorController extends Controller {
 
 	//从2.1开始, errorAction支持直接通过参数获取异常
 	public function errorAction($exception="") {
-		//1. assign to view engine
-		$this->getView()->assign("exception", !empty($exception)?$exception->getMessage():"error");
-		//5. render by Yaf 
+		$this->getHtml()->assign('id',1213);
+		$this->getRender('error/error');
+		return false;
 	}
 }

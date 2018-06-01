@@ -9,29 +9,30 @@ class HttpSever {
     public static $instance;
     private $env = 'product'; //product OR develop
     private $application;
+    private $ws = null;
     public function __construct() {
         define ('IS_SWOOLE', true);
         define('APP_PATH', dirname(__DIR__));
-        
+        \Yaf\Loader::import( APP_PATH . '/vendor/autoload.php');
         $config = (new \Yaf\Config\Ini(APP_PATH . "/conf/application.ini",$this->env))->toArray();
-        $ws = new \swoole_websocket_server($config['sw']['host'],$config['sw']['port']);
-        $ws->set($config['swoole']);
-        $ws->on("start", [$this, 'onStart']);
-        $ws->on("open", [$this, 'onOpen']);
-        $ws->on("message", [$this, 'onMessage']);
-        $ws->on("workerstart", [$this, 'onWorkerStart']);
-        $ws->on("request", [$this, 'onRequest']);
-        $ws->on("task", [$this, 'onTask']);
-        $ws->on("finish", [$this, 'onFinish']);
-        $ws->on("close", [$this, 'onClose']);
-        $ws->start();
+        $this->ws = new \swoole_websocket_server($config['sw']['host'],$config['sw']['port']);
+        $this->ws->set($config['swoole']);
+        $this->ws->on("start", [$this, 'onStart']);
+        $this->ws->on("open", [$this, 'onOpen']);
+        $this->ws->on("message", [$this, 'onMessage']);
+        $this->ws->on("workerstart", [$this, 'onWorkerStart']);
+        $this->ws->on("request", [$this, 'onRequest']);
+        $this->ws->on("task", [$this, 'onTask']);
+        $this->ws->on("finish", [$this, 'onFinish']);
+        $this->ws->on("close", [$this, 'onClose']);
+        $this->ws->start();
     }
 
     /**
      * @param $server
      */
     public function onStart($server) {
-        swoole_set_process_name("live_master");
+        swoole_set_process_name("whero_demo");
     }
     /**
      * @param $server
@@ -49,12 +50,10 @@ class HttpSever {
             var_dump($errorMsg);
             exit();
         }
-        \Yaf\Registry::set('http', $server);
-        \Yaf\Registry::set('env', $this->env);
+
         //错误信息将写入swoole日志中
         error_reporting(-1);
         ini_set('display_errors', 1);
-        
         $this->application = new \Yaf\Application(APP_PATH . "/conf/application.ini",$this->env);
         ob_start();
 		$this->application->bootstrap();
@@ -75,17 +74,17 @@ class HttpSever {
 
         \Yaf\Registry::set('request', $request);
         \Yaf\Registry::set('response', $response);
-
+        \Yaf\Registry::set('http', $this->ws);
         ob_start();
         try {
             $yaf_request = new \Yaf\Request\Http($request->server['request_uri'],'/');
-            $this->application->getDispatcher()->throwException(true)->dispatch($yaf_request);
+            $this->application->getDispatcher()->dispatch($yaf_request);
         } catch (\Yaf\Exception $e ) {
-            // Yaf\View\Simple::render("error.phtml");
-            // var_dump($e);
-            // $result = $e->getMessage();
-            $response->status(302);
-            $response->header("Location", "http://127.0.0.1:9501/index/error/error");
+            \Yaf\Registry::get('html')->fetch('error/error');
+            $result = ob_get_contents();
+            $response->write($result);
+            // $response->status(302);
+            // $response->header("Location", "http://127.0.0.1:9501/index/error/error");
         }
         $result = ob_get_contents();
         ob_end_clean();
@@ -142,9 +141,9 @@ class HttpSever {
         $requestObj->setParam($result);
         ob_start();
         try {
-            $this->yafObj->getDispatcher()->dispatch($requestObj);
-        } catch (Yaf\Exception $e) {
-            var_dump($e);
+            $this->application->getDispatcher()->dispatch($requestObj);
+        } catch (\Yaf\Exception $e) {
+            $ws->push($frame->fd,"拒绝访问");
         }
         ob_end_clean();
     }
@@ -155,13 +154,6 @@ class HttpSever {
      * @param $fd
      */
     public function onClose($ws, $fd) {
-    }
-
-    /**
-     * 记录日志
-     */
-    public function writeLog() {
-
     }
     public static function getInstance()
     {
