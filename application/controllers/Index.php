@@ -12,15 +12,6 @@ class IndexController extends Controller {
 	 * @Desc: 默认动作 
 	 */	
 	public function indexAction() {
-		// echo json_encode(['code'=>2,'data'=>1111]);
-		// return false;
-		$response = \Yaf\Registry::get('response');
-		// $response->header('Content-Type', 'text/html;charset=utf-8');
-        $response->status(404);
-		// var_dump(opcache_get_status());
-		$response->write(json_encode(\Yaf\Registry::get('request')));
-        // var_dump(opcache_get_status()['opcache_statistics']);
-        // return false;
-		$this->getView()->assign("content", "Hello World");
+		$this->getRender('index/index');
 	}
 }

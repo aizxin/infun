@@ -11,6 +11,5 @@ class ErrorController extends Controller {
 	public function errorAction($exception="") {
 		$this->getHtml()->assign('id',1213);
 		$this->getRender('error/error');
-		return false;
 	}
 }

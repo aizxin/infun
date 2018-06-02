@@ -25,8 +25,11 @@ class CoMysqlPool
             //无空闲连接，创建新连接
             $mysql = new \Swoole\Coroutine\MySQL();
             $config = \Yaf\Registry::get('config')->toArray();
-            $mysql->connect($config['db']);
-            return $mysql;
+            $db = $mysql->connect($config['db']);
+            if($db){
+                return $mysql;
+            }
+            return $this->pop();
         }
     }
 }

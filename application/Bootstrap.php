@@ -25,6 +25,7 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract {
 	}
 	
 	public function _initView(\Yaf\Dispatcher $dispatcher) {
+		$dispatcher->disableView();
 		//在这里注册自己的view控制器，例如smarty,firekylin
 		\Yaf\Registry::set('html', new \think\Template([
             'view_path'	=>	APP_PATH .'/application/views/',

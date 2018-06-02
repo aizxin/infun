@@ -25,7 +25,13 @@ class CoRedisPool
             //无空闲连接，创建新连接
             $redis = new Swoole\Coroutine\Redis();
             $config = \Yaf\Registry::get('config');
-            $redis->connect($config['redis']['host'], $config['redis']['port']);
+            $res = $redis->connect($config['redis']['host'], $config['redis']['port']);
+            if(isset($config['redis']['auth']) && !empty($config['redis']['auth'])){
+                $redis->auth($config['redis']['auth']);
+            }
+            if ($res == false) {
+                return $this->pop();
+            }
             return $redis;
         }
     }

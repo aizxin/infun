@@ -78,6 +78,7 @@
      */    
     public function getRender($file)
     {
+        $this->response()->write("");
         ob_start();
 		$this->getHtml()->fetch($file);
 		$content = ob_get_clean();
