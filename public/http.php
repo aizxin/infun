@@ -80,7 +80,7 @@ class HttpSever {
             $yaf_request = new \Yaf\Request\Http($request->server['request_uri'],'/');
             $this->application->getDispatcher()->dispatch($yaf_request);
         } catch (\Yaf\Exception $e ) {
-            var_dump($e);
+            // var_dump($e);
             \Yaf\Registry::get('html')->fetch('error/error');
             $result = ob_get_contents();
             $response->write($result);
