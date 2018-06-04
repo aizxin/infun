@@ -179,11 +179,10 @@ var INSPIRO = {},
         goToTop: function () {
             if ($goToTop.length > 0) {
 
-                var scrollOffset = $body.attr('data-offset') || 800;
-
+                var scrollOffset = $body.attr('data-offset') || 600;
                 if ($window.scrollTop() > scrollOffset) {
                     $goToTop.css({
-                        'bottom': '26px',
+                        'bottom': '65px',
                         'opacity': 1
                     });
                 } else {
