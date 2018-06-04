@@ -7377,7 +7377,8 @@ h6.font-raleway {
     vertical-align: inherit;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
-    height: 80px;
+    height: 40px;
+    margin-top: 22px;
     width: auto
 }
 
@@ -9851,7 +9852,20 @@ body.side-panel-static #wrapper .container {
 .sidebar-both .grid-active-title {
     display: none
 }
-
+@media (max-width:768px) {
+    #header #top-search form input {
+        background-color: transparent;
+        border: 0 none;
+        border-radius: 0;
+        -webkit-box-shadow: none!important;
+        box-shadow: none!important;
+        font-size: 30px;
+        height: 100%;
+        letter-spacing: 2px;
+        outline: 0 none;
+        padding: 0 94px 0 0
+    }
+}
 @media (max-width:991px) {
     .grid-active-title {
         display: none
