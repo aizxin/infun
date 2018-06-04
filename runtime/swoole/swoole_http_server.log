@@ -17,3 +17,22 @@
 [2018-06-03 02:27:51 *6154.3]	WARNING	swSignal_callback: signal[1] callback is null.
 [2018-06-03 02:27:51 *6153.2]	WARNING	swSignal_callback: signal[1] callback is null.
 [2018-06-03 02:28:22 #6133.8]	NOTICE	Server is shutdown now.
+[2018-06-04 18:25:05 #6417.8]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 *6447.12]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 *6445.10]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 *6446.11]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 *6449.14]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 $6418.0]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 *6448.13]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 *6450.15]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 *6444.9]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 *6443.8]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 *6442.7]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 *6441.6]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 *6440.5]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 *6439.4]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 *6438.3]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 *6437.2]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 *6436.1]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:05 *6435.0]	WARNING	swSignal_callback: signal[1] callback is null.
+[2018-06-04 18:25:55 #6417.8]	WARNING	swServer_signal_hanlder: Fatal Error: manager process exit. status=0, signal=0.
