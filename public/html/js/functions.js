@@ -36,7 +36,6 @@ var INSPIRO = {},
         $mainsubmenuitems = $mainmenu.find('li.dropdown-submenu > a, li.dropdown-submenu > span'), //Vertical Dot Menu
         $dotsMenu = $('#dotsMenu'),
         $dotsMenuItems = $dotsMenu.find("ul > li > a"),
-        $pageMenu = $('.page-menu'),
         sidePanel = $('#side-panel'),
         sidePanellogo = $('#panel-logo').find('.logo'),
         sidePanellogoImg = sidePanellogo.find('img').attr('src'),
@@ -94,9 +93,7 @@ var INSPIRO = {},
 
 
     INSPIRO.core = {
-        functions: function () {
-            INSPIRO.core.pageLoader();
-            INSPIRO.core.responsiveClasses();
+        functions: function () {            INSPIRO.core.responsiveClasses();
             INSPIRO.core.goToTop();
             INSPIRO.core.screenSizeControl();
             INSPIRO.core.rtlStatus();
@@ -199,131 +196,6 @@ var INSPIRO = {},
                     return false;
                 });
             }
-        },
-        pageLoader: function () {
-            if (!$().animsition) {
-                console.log('pageLoader: animsition plugin is missing.');
-                return true;
-            }
-
-            if (!$body.hasClass('no-page-loader')) {
-                var pageInAnimation = $body.attr('data-animation-in') || "fadeIn",
-                    pageOutAnimation = $body.attr('data-animation-out') || "fadeOut",
-                    pageLoaderIcon = $body.attr('data-icon') || 10,
-                    pageLoaderIconColor = $body.attr('data-icon-color') || null,
-                    pageInDuration = $body.attr('data-speed-in') || 1500,
-                    pageOutDuration = $body.attr('data-speed-out') || 800,
-                    iconColor = "",
-                    loadingInnerHTML = "";
-
-                switch (Number(pageLoaderIcon)) {
-                    case 1:
-                        loadingInnerHTML = '<div class="material-icon"><div class="spinner"><div class="right-side"><div class="bar"></div></div><div class="left-side"><div class="bar"></div></div></div></div>';
-                        iconColor = '.spinner .bar {border-color: ' + pageLoaderIconColor + ';} .spinner .bar:after {background: ' + pageLoaderIconColor + ';}';
-                        break;
-                    case 2:
-                        loadingInnerHTML = '<div class="loader-inner ball-grid-pulse"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';
-                        iconColor = '.ball-grid-pulse > div {background: ' + pageLoaderIconColor + '!important;}';
-                        break;
-                    case 3:
-                        loadingInnerHTML = '<div class="loader01"></div>';
-                        iconColor = '.loader01 {border-color: ' + pageLoaderIconColor + ' transparent ' + pageLoaderIconColor + ' ' + pageLoaderIconColor + ';} .loader01::after {background: ' + pageLoaderIconColor + ';}';
-                        break;
-                    case 4:
-                        loadingInnerHTML = '<div class="loader-inner square-spin"><div></div></div>';
-                        iconColor = '.square-spin > div {background: ' + pageLoaderIconColor + ' !important;}';
-                        break;
-                    case 5:
-                        loadingInnerHTML = '<div class="loader04"></div>';
-                        iconColor = '.loader04:after {background: ' + pageLoaderIconColor + ' !important;}';
-                        break;
-                    case 6:
-                        loadingInnerHTML = '<div class="loader-inner ball-rotate"><div></div></div>';
-                        iconColor = '.ball-rotate > div, .ball-rotate > div:after, .ball-rotate > div:before {background: ' + pageLoaderIconColor + ' !important;}';
-                        break;
-                    case 7:
-                        loadingInnerHTML = '<div class="loader-inner cube-transition"><div></div><div></div></div>';
-                        iconColor = '.cube-transition > div {background: ' + pageLoaderIconColor + ' !important;}';
-                        break;
-                    case 8:
-                        loadingInnerHTML = '<div class="loader-inner ball-zig-zag"><div></div><div></div></div>';
-                        iconColor = '.ball-zig-zag > div {background: ' + pageLoaderIconColor + ' !important;}';
-                        break;
-                    case 9:
-                        loadingInnerHTML = '<div class="loader-inner ball-triangle-path"><div></div><div></div><div></div></div>';
-                        iconColor = '.ball-triangle-path > div {background: ' + pageLoaderIconColor + ' !important;}';
-                        break;
-                    case 10:
-                        loadingInnerHTML = '<div class="loader-inner line-scale"><div></div><div></div><div></div><div></div><div></div></div>';
-                        iconColor = '.line-scale > div {background: ' + pageLoaderIconColor + ' !important;}';
-                        break;
-                    case 11:
-                        loadingInnerHTML = '<div class="loader-inner ball-scale-multiple"><div></div><div></div><div></div></div>';
-                        iconColor = '.ball-scale-multiple > div {background: ' + pageLoaderIconColor + ' !important;}';
-                        break;
-                    case 12:
-                        loadingInnerHTML = '<div class="loader-inner ball-pulse-sync"><div></div><div></div><div></div></div>';
-                        iconColor = '.ball-pulse-sync > div {background: ' + pageLoaderIconColor + ' !important;}';
-                        break;
-                    case 13:
-                        loadingInnerHTML = '<div class="loader-inner ball-beat"><div></div><div></div><div></div></div>';
-                        iconColor = '.ball-beat > div {background: ' + pageLoaderIconColor + ' !important;}';
-                        break;
-                    case 14:
-                        loadingInnerHTML = '<div class="loader-inner line-scale-pulse-out-rapid"><div></div><div></div><div></div><div></div><div></div></div>';
-                        iconColor = '.line-scale-pulse-out-rapid > div {background: ' + pageLoaderIconColor + ' !important;}';
-                        break;
-                    case 15:
-                        loadingInnerHTML = '<div class="loader-inner ball-scale-ripple-multiple"><div></div><div></div><div></div></div>';
-                        iconColor = '.ball-scale-ripple-multiple > div {border-color: ' + pageLoaderIconColor + ' !important;}';
-                        break;
-                    case 16:
-                        loadingInnerHTML = '<div class="loader-inner ball-spin-fade-loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';
-                        iconColor = '.ball-spin-fade-loader > div {background: ' + pageLoaderIconColor + ' !important;}';
-                        break;
-                    case 17:
-                        loadingInnerHTML = '<div class="loader-inner line-spin-fade-loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';
-                        iconColor = '.line-spin-fade-loader > div {background: ' + pageLoaderIconColor + ' !important;}';
-                        break;
-                    case 18:
-                        loadingInnerHTML = '<div class="loader-inner pacman"><div></div><div></div><div></div><div></div><div></div></div>';
-                        iconColor = '.pacman > div:nth-child(3), .pacman > div:nth-child(4), .pacman > div:nth-child(5), .pacman > div:nth-child(6)  {background: ' + pageLoaderIconColor + ' !important;} .pacman > div:first-of-type, .pacman > div:nth-child(2) {border-color: ' + pageLoaderIconColor + ' transparent ' + pageLoaderIconColor + ' ' + pageLoaderIconColor + '}';
-                        break;
-                    case 19:
-                        loadingInnerHTML = '<div class="loader-inner ball-grid-beat"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';
-                        iconColor = '.ball-grid-beat > div {background: ' + pageLoaderIconColor + ' !important;}';
-                        break;
-                    case 20:
-                        loadingInnerHTML = '<div class="single9"></div>';
-                        iconColor = '.single9:before {background-color: ' + pageLoaderIconColor + ' !important;}';
-                        break;
-                    default:
-                        loadingInnerHTML = '<div class="material-icon"><div class="spinner"><div class="right-side"><div class="bar"></div></div><div class="left-side"><div class="bar"></div></div></div></div>';
-                        iconColor = '.spinner .bar {border-color: ' + pageLoaderIconColor + ';} .spinner .bar:after {background: ' + pageLoaderIconColor + ';}';
-                        break;
-                }
-                if (pageLoaderIconColor) {
-                    $('head').append('<style type="text/css">' + iconColor + '</style>');
-                }
-                $('#wrapper').animsition({
-                    inClass: pageInAnimation,
-                    outClass: pageOutAnimation,
-                    inDuration: pageInDuration,
-                    outDuration: pageOutDuration,
-                    loading: true,
-                    loadingParentElement: 'body', //animsition wrapper element
-                    loadingClass: 'animsition-loading',
-                    loadingInner: '<div class="loader">' + loadingInnerHTML + '</div>',
-                    linkElement: '#mainMenu a:not([target="_blank"]):not([href^=#]), .animsition-link'
-                });
-                setTimeout(function () {
-                    if ($(".animsition-loading").length) {
-                        $body.addClass("no-page-loader");
-                        $(".animsition-loading").hide();
-                    }
-                }, 10000);
-            }
-
         },
         screenSizeControl: function () {
             if ($fullScreen.length > 0) {
@@ -470,11 +342,8 @@ var INSPIRO = {},
             INSPIRO.header.topBar();
             INSPIRO.header.topSearch();
             INSPIRO.header.mainMenu();
-            INSPIRO.header.pageTitle();
-            INSPIRO.header.pageMenu();
             INSPIRO.header.sidePanel();
             INSPIRO.header.dotsMenu();
-            INSPIRO.header.onepageMenu();
         },
         logoStatus: function () {
             if (!$body.is('.device-lg, .device-md, .menu-overlay-active') && $header.is('.dark.header-transparent, .dark.header-colored-transparent, .dark.header-colored')) {
@@ -575,42 +444,6 @@ var INSPIRO = {},
                 }
             }
         },
-        pageTitle: function () {
-            if ($pageTitle.length > 0) {
-                //     var pageTitleHeight = $pageTitle.find("> .container").innerHeightHeight();
-                //
-                //   alert(pageTitleHeight);
-                //     $pageTitle.css('min-height', pageTitleHeight);
-
-                /* if ($topbar && $header) {
-                      $pageTitle.css("padding-top", $header.height() + $topbar.height());
-                  }else{
-                       $pageTitle.css("padding-top", $header.height());
-                  }
-*/
-            }
-        },
-
-
-        /*TO BE CHECKED !!!!!!!!!!!!!!!*/
-        pageMenu: function () {
-            if ($pageMenu.length > 0) {
-                $pageMenu.each(function () {
-                    if ($pageMenu.hasClass("slide-menu")) {
-                        $pageMenu.addClass("slide-menu-version");
-                        $("#menu-responsive-icon").on("click", function () {
-                            $pageMenu.toggleClass("page-menu-active");
-                            $pageMenu.toggleClass("items-visible");
-                        });
-                    } else {
-                        $("#menu-responsive-icon").on("click", function () {
-                            $pageMenu.toggleClass("page-menu-active");
-                            $pageMenu.toggleClass("items-visible");
-                        });
-                    }
-                });
-            }
-        },
         sidePanel: function () {
             if (sidePanel.length > 0) {
                 $("#wrapper, #close-panel").on("click", function () {
@@ -632,12 +465,6 @@ var INSPIRO = {},
 
                 $dotsMenuItems.parents("li").removeClass('current');
                 $dotsMenu.find('a[href="#' + INSPIRO.header.currentSection() + '"]').parent("li").addClass('current');
-            }
-        },
-        onepageMenu: function () {
-            if ($mainmenu.hasClass("menu-one-page")) {
-                $mainmenu.find("nav > ul > li > a").parents("li").removeClass('current');
-                $mainmenu.find('nav > ul > li > a[href="#' + INSPIRO.header.currentSection() + '"]').parent("li").addClass('current');
             }
         },
         currentSection: function () {
@@ -2103,7 +1930,7 @@ var INSPIRO = {},
     };
 
 
-    	INSPIRO.isMobile = {
+    INSPIRO.isMobile = {
 		Android: function() {
 			return navigator.userAgent.match(/Android/i);
 		},
@@ -2141,7 +1968,6 @@ var INSPIRO = {},
     //Document ready functions
     INSPIRO.documentReady = {
         functions: function () {
-            INSPIRO.core.pageLoader();
             INSPIRO.slider.sliderScreenSizeControl();
             INSPIRO.core.functions();
             INSPIRO.header.functions();
@@ -2152,16 +1978,6 @@ var INSPIRO = {},
     };
     $(document).ready(INSPIRO.documentReady.functions);
 
-    //Document on load functions
-    INSPIRO.documentOnLoad = {
-        functions: function () {
-
-
-
-        },
-    };
-    $(window).on('load', INSPIRO.documentOnLoad.functions);
-
     //Document Scroll functions
     INSPIRO.documentScroll = {
         functions: function () {
@@ -2169,95 +1985,8 @@ var INSPIRO = {},
             INSPIRO.header.stickyHeader();
             INSPIRO.core.goToTop();
             INSPIRO.header.dotsMenu();
-            INSPIRO.header.onepageMenu();
         },
     };
     $window.on('scroll', INSPIRO.documentScroll.functions);
-
-
-
-    INSPIRO.lightBoxInspiro = function () {
-
-        if ($lightbox_image.length > 0) {
-            $lightbox_image.magnificPopup({
-                type: 'image',
-                removalDelay: 500, //delay removal by X to allow out-animation
-                callbacks: {
-                    beforeOpen: function () {
-                        this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
-                        this.st.mainClass = "mfp-zoom-out";
-                    }
-                },
-            });
-        }
-        if ($lightbox_gallery.length > 0) {
-            $lightbox_gallery.each(function () {
-                $(this).magnificPopup({
-                    delegate: 'a[data-lightbox="gallery-item"]',
-                    type: 'image',
-                    image: {
-                        verticalFit: true
-                    },
-                    gallery: {
-                        enabled: true,
-                        navigateByImgClick: true,
-                        preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
-                    },
-                    removalDelay: 500, //delay removal by X to allow out-animation
-                    callbacks: {
-                        beforeOpen: function () {
-                            this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
-                            this.st.mainClass = "mfp-zoom-out";
-                        }
-                    },
-                });
-            });
-        }
-        if ($lightbox_iframe.length > 0) {
-            $lightbox_iframe.each(function () {
-                $(this).magnificPopup({
-                    type: 'iframe',
-                    removalDelay: 500, //delay removal by X to allow out-animation
-                    callbacks: {
-                        beforeOpen: function () {
-                            this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
-                            this.st.mainClass = "mfp-zoom-out";
-                        }
-                    },
-                });
-            });
-        }
-        if ($lightbox_ajax.length > 0) {
-            $lightbox_ajax.each(function () {
-                $(this).magnificPopup({
-                    type: 'ajax',
-                    removalDelay: 500, //delay removal by X to allow out-animation
-                    callbacks: {
-                        ajaxContentAdded: function (mfpResponse) {
-                            INSPIRO.lightBoxInspiro();
-                            INSPIRO.slider.carouselAjax();
-                            INSPIRO.elements.responsiveVideos();
-                            INSPIRO.elements.accordion();
-                        }
-                    }
-                });
-            });
-        }
-        if ($lightbox_inline.length > 0) {
-            $lightbox_inline.magnificPopup({
-                type: 'inline',
-                removalDelay: 500, //delay removal by X to allow out-animation
-                callbacks: {
-                    beforeOpen: function () {
-                        this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
-                        this.st.mainClass = "mfp-zoom-out";
-                    }
-                },
-                closeBtnInside: false,
-                fixedContentPos: true,
-                overflowY: 'scroll',
-            });
-        }
-    };
 
 })(jQuery);
