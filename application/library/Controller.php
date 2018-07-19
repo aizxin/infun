@@ -80,7 +80,8 @@
     {
         ob_start();
 		$this->getHtml()->fetch($file);
-		$content = ob_get_clean();
+        $content = ob_get_clean();
+        CoFile::instance()->writeFile('index.html',$content);
 		$this->response()->write($content);
     }
 
