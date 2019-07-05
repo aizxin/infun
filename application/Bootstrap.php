@@ -32,9 +32,9 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract {
 	 */	
 	public function _initLog(\Yaf\Dispatcher $dispatcher)
 	{
-//        \swf\facade\Log::init([
-//            'type'=>'file',
-//            'path'=> APP_PATH . '/runtime/logs/',
-//        ]);
+        \swf\facade\Log::init([
+            'type'=>'file',
+            'path'=> APP_PATH . '/runtime/logs/',
+        ]);
 	}
 }
