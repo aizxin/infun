@@ -18,11 +18,11 @@ class IndexController extends Controller {
 //        \swf\facade\Cache::set('123bdsqjbd',1234567);
 //	    var_dump(\swf\facade\Cache::get('123bdsqjbd'));
 //        \swf\facade\Db::run(['type'=>'mysql']);
-        $modelUser = new \App\Models\UserModel();
+//        $modelUser = new \App\Models\UserModel();
 
 //         var_dump($modelUser);
 //
-        var_dump($modelUser->cache());
+//        var_dump($modelUser->cache());
 
 //        $cache = \swf\facade\Cache::init();
 //        var_dump($cache->handler());
@@ -91,6 +91,9 @@ class IndexController extends Controller {
 
 //        echo $redis->get('1111');
 
+        \swf\queue\Queue::push(\App\Queue\TestQueue::class,['123'=>123467]);
+
+        \swf\queue\Queue::later(10,\App\Queue\TestQueue::class,['12334'=>123467]);
         var_dump('1233');
 	}
 }
